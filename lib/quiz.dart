@@ -16,18 +16,12 @@ class _QuizState extends State<Quiz> {
     const Color.fromARGB(255, 67, 0, 148),
     const Color.fromARGB(255, 165, 6, 224),
   ];
-  // ignore: prefer_const_constructors
-  Widget? activeScreen;
 
-  @override
-  void initState() {
-    activeScreen = StartScreen(switchScreen);
-    super.initState();
-  }
+  var activeScreen = "start-screen";
 
   void switchScreen() {
     setState(() {
-      activeScreen = const QuestionsScreen();
+      activeScreen = "questions-screen";
     });
   }
 
@@ -43,7 +37,9 @@ class _QuizState extends State<Quiz> {
               colors: colors,
             ),
           ),
-          child: activeScreen,
+          child: activeScreen == "start-screen"
+              ? StartScreen(switchScreen)
+              : const QuestionsScreen(),
         ),
       ),
     );
