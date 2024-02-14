@@ -23,12 +23,12 @@ class _QuizState extends State<Quiz> {
   var activeScreen = "start-screen";
 
   void chooseAnswer(String answer) {
-    selectedAnswers.add(answer);
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        selectedAnswers = [];
         activeScreen = "results-screen";
       });
+    } else {
+      selectedAnswers.add(answer);
     }
   }
 
@@ -39,6 +39,7 @@ class _QuizState extends State<Quiz> {
   }
 
   void switchToStartScreen() {
+    selectedAnswers = [];
     setState(() {
       activeScreen = "start-screen";
     });
